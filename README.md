@@ -1,5 +1,6 @@
-# Student Management System
+# Python Projects
 
+## 1. Student Management System
 Features:
 - Add Student
 - View Students
@@ -8,7 +9,15 @@ Features:
 - Average Marks
 - Find Topper
 
-Concepts Used:
+## 2. ATM Simulator
+Features:
+- Check Balance
+- Deposit Money
+- Withdraw Money
+- Exit
+
+## Concepts Used
+- Variables
 - Lists
 - Loops
 - If Else
