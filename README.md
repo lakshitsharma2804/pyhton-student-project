@@ -1,7 +1,6 @@
 # Python Projects
 
 ## 1. Student Management System
-Features:
 - Add Student
 - View Students
 - Search Student
@@ -10,15 +9,20 @@ Features:
 - Find Topper
 
 ## 2. ATM Simulator
-Features:
 - Check Balance
 - Deposit Money
 - Withdraw Money
 - Exit
 
-## Concepts Used
+## 3. Password Manager
+- View Passwords
+- Search Account
+- Add Account
+
+## Concepts Learned
 - Variables
 - Lists
+- Dictionaries
 - Loops
 - If Else
-- User Input
+- Search Operations
