@@ -1,71 +1,133 @@
-students = []
-while True:
-    user = input("\nMENU: add/view/search/delete/update_marks/average/topper/exit = ").lower()
-    if user == "add":
-        name = input("what is your name = ")
-        marks = int(input("what is your marks = "))
-        students.append([name, marks])
-        print("student added successfully")
-    
-    elif user == "view":
-        for name, marks in students:
-            print("name = ", name)
-            print("marks = ", marks)
-            print()
-        if len(students) == 0:
-            print("no students were addded")
+students = [
+    {"name": "Lakshit", "marks": 95},
+    {"name": "Rahul", "marks": 80},
+    {"name": "Aman", "marks": 90}
+]
 
-    elif user == "search":
-        enter = input("enter student name = ")
+while True:
+    print("-" * 5, "Student Management", "-" * 5)
+    print("1. View Students")
+    print("2. Add Student")
+    print("3. Search Student")
+    print("4. Update Marks")
+    print("5. Delete Student")
+    print("6. Find Topper")
+    print("7. Find Average")
+    print("8. Exit")
+
+    user = input("What You Want To Do? = ")
+
+    if user == "1":
+        for student in students:
+            print("Name :", student["name"], " " * 5, "Marks :", student["marks"])
+
+    elif user == "2":
+        name = input("Enter Name: ").title()
+
+        if not name.strip():
+            print("Invalid Name")
+            continue
+
+        marks = int(input("Enter Marks: "))
+
+        if marks <= 0:
+            print("Invalid Marks")
+        else:
+            students.append({
+                "name": name,
+                "marks": marks
+            })
+            print("Student Added Successfully")
+
+    elif user == "3":
+        name = input("Enter Name: ").title()
+
+        if not name.strip():
+            print("Invalid Name")
+            continue
+
         found = False
-        for name, marks in students:
-            if name.lower() == enter.lower():
-                print("name = ", name)
-                print("marks = ", marks)
+
+        for student in students:
+            if name == student["name"]:
+                print("Name :", student["name"])
+                print("Marks :", student["marks"])
                 found = True
                 break
+
         if not found:
-            print("student not found")
-        
-    elif user == "delete":
-        delete = input("which name you want to delete = ")
+            print("Student Not Found")
+
+    elif user == "4":
+        name = input("Enter Name: ").title()
+
+        if not name.strip():
+            print("Invalid Name")
+            continue
+
         found = False
+
         for student in students:
-            if student[0].lower() == delete.lower():
-                students.remove(student)
+            if name == student["name"]:
                 found = True
-                print(delete, "successfully removed from the list")
+
+                marks = int(input("Enter New Marks: "))
+
+                if marks <= 0:
+                    print("Invalid Marks")
+                    break
+
+                student["marks"] = marks
+                print("Marks Updated Successfully")
+                break
+
         if not found:
-            print(delete, "is not in list")
+            print("Student Not Found")
 
+    elif user == "5":
+        name = input("Enter Name: ").title()
 
+        if not name.strip():
+            print("Invalid Name")
+            continue
 
-    elif user == "average":
-        if len(students) == 0:
-            print("no student were added")
-        else:
-            count = 0
-            for name, marks in students:
-                count += marks
-            avg = count/len(students)
-            print(avg)
-                
-    elif user == "topper":
-      if len(students) == 0:
-          print("no students were added")
-      else:
-        topper_name = students[0][0]
-        max_marks = students[0][1]
-        for name, marks in students:
-            if marks>max_marks:
-                max_marks = marks
-                topper_name = name
-        print("name = ", topper_name)
-        print("marks = ", max_marks)
-    
-    elif user == "exit":
-        print("thankyou \nprogram closed!")
+        found = False
+
+        for student in students:
+            if name == student["name"]:
+                students.remove(student)
+                print("Student Removed Successfully")
+                found = True
+                break
+
+        if not found:
+            print("Student Not Found")
+
+    elif user == "6":
+        top_marks = 0
+        topper = ""
+
+        for student in students:
+            if student["marks"] > top_marks:
+                top_marks = student["marks"]
+                topper = student["name"]
+
+        print("Topper =", topper)
+        print("Marks =", top_marks)
+
+    elif user == "7":
+        total = 0
+
+        for student in students:
+            total += student["marks"]
+
+        average = total / len(students)
+
+        print("Average =", round(average, 2))
+
+    elif user == "8":
+        print("Program Closed")
         break
 
     else:
-        print("invalid command")
+        print("Invalid Command")
